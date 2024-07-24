@@ -1,0 +1,43 @@
+.activity-item {
+  // Activity card grid layout.
+  .activity-grid {
+    display: grid;
+    align-items: center;
+    grid-template-columns: min-content 1fr min-content min-content min-content min-content;
+    grid-template-rows: 1fr repeat(6, min-content);
+    grid-template-areas:
+      "icon          name          quickchat      groupmode      completion    actions"
+      "icon          visibility    quickchat      groupmode      completion    actions"
+      "icon          dates         quickchat      groupmode      completion    actions"
+      "altcontent    altcontent    quickchat      altcontent     altcontent    altcontent"
+      "afterlink     afterlink     quickchat      afterlink      afterlink     afterlink"
+      "availability  availability  quickchat      availability   availability  availability";
+    @include media-breakpoint-down(xs) {
+      grid-template-columns: min-content 1fr min-content min-content min-content;
+      grid-template-rows: 1fr repeat(5, min-content);
+      grid-template-areas:
+        "icon          name          actions"
+        "icon          visibility    actions"
+        "dates         dates         dates"
+        "groupmode     groupmode     groupmode"
+        "completion    completion    completion"
+        "altcontent    altcontent    altcontent"
+        "afterlink     afterlink     afterlink"
+        "availability  availability  availability";
+    }
+  }
+
+  .activity-actions {
+    grid-area: quickchat;
+    .actions {
+      position: relative;
+    }
+    // Override '.btn.btn-icon' styles from buttons.scss to make action menu buttons smaller.
+    .action-menu .btn.btn-icon {
+      height: map-get($iconsizes, 5);
+      width: map-get($iconsizes, 5);
+      background-color: red;
+      @include border-radius();
+    }
+  }
+}
